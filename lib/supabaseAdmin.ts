@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import ws from "ws";
 
 // Server-side only — uses the service role key.
 // NEVER import this file in browser/client components.
@@ -18,7 +19,12 @@ function getClient(): SupabaseClient {
     );
   }
 
-  _client = createClient(url, key, { auth: { persistSession: false } });
+  _client = createClient(url, key, {
+    auth: { persistSession: false },
+    // Node 20 has no built-in WebSocket. The pipeline only uses REST,
+    // but the client still constructs a realtime socket on startup.
+    realtime: { transport: ws as unknown as typeof WebSocket }
+  });
   return _client;
 }
 
