@@ -58,32 +58,42 @@ export async function generatePikaClip(
 
       const useImage = Boolean(input.image_url);
       const endpoint = useImage ? FAL_IMAGE_ENDPOINT : FAL_TEXT_ENDPOINT;
-
-      // Pika 2.2 only accepts 5s or 10s. Always generate 5s and trim later.
-      const falInput: Record<string, unknown> = {
-        prompt: input.prompt,
-        negative_prompt: input.negative_prompt || "ugly, bad, terrible",
-        duration: 5,
-        resolution: "720p"
-      };
-
-      if (useImage) {
-        falInput.image_url = input.image_url;
-      } else {
-        falInput.aspect_ratio = "9:16";
-      }
+      const negativePrompt = input.negative_prompt || "ugly, bad, terrible";
 
       console.log(`[fal] Endpoint: ${endpoint}`);
 
-      const result = await fal.subscribe(endpoint, {
-        input: falInput,
-        logs: true,
-        onQueueUpdate: (update: { status: string; logs?: Array<{ message: string }> }) => {
-          if (update.status === "IN_PROGRESS" && update.logs) {
-            update.logs.forEach((l) => console.log("[fal queue]", l.message));
-          }
-        }
-      });
+      // Pika 2.2 only accepts 5s or 10s. Always generate 5s and trim later.
+      const result = useImage
+        ? await fal.subscribe(FAL_IMAGE_ENDPOINT, {
+            input: {
+              prompt: input.prompt,
+              image_url: input.image_url as string,
+              negative_prompt: negativePrompt,
+              duration: "5",
+              resolution: "720p"
+            },
+            logs: true,
+            onQueueUpdate: (update) => {
+              if (update.status === "IN_PROGRESS") {
+                update.logs?.forEach((l) => console.log("[fal queue]", l.message));
+              }
+            }
+          })
+        : await fal.subscribe(FAL_TEXT_ENDPOINT, {
+            input: {
+              prompt: input.prompt,
+              negative_prompt: negativePrompt,
+              duration: "5",
+              resolution: "720p",
+              aspect_ratio: "9:16"
+            },
+            logs: true,
+            onQueueUpdate: (update) => {
+              if (update.status === "IN_PROGRESS") {
+                update.logs?.forEach((l) => console.log("[fal queue]", l.message));
+              }
+            }
+          });
 
       // fal response shape: { data: { video: { url: string } } }
       const data = result.data as { video?: { url?: string }; video_url?: string };
