@@ -10,9 +10,9 @@ export default async function NewIdeaPage() {
     <Layout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">New Video Idea</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">New reel</h1>
           <p className="text-sm text-gray-500 mt-0.5">
-            Fill in the details and scene breakdown for your AI reel.
+            Title, script, five to eight scenes, and when it should run.
           </p>
         </div>
         <IdeaForm />

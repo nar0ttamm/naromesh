@@ -77,18 +77,18 @@ export default async function DashboardPage() {
     <Layout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Dashboard</h1>
             <p className="text-sm text-gray-500 mt-0.5">
-              AI reel automation overview
+              What is queued, finished, and ready to post
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <RunPipelineButton />
             <Link href="/ideas/new" className="btn-primary">
               <Plus className="w-4 h-4" />
-              New Idea
+              New reel
             </Link>
           </div>
         </div>
@@ -96,8 +96,8 @@ export default async function DashboardPage() {
         {/* Stat cards */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {statCards.map(({ label, value, icon: Icon, color }) => (
-            <div key={label} className="card p-4">
-              <div className={`inline-flex p-2 rounded-lg mb-3 ${color}`}>
+            <div key={label} className="card p-3 sm:p-4">
+              <div className={`inline-flex p-2 rounded-lg mb-2 sm:mb-3 ${color}`}>
                 <Icon className="w-4 h-4" />
               </div>
               <div className="text-2xl font-bold text-gray-900">{value}</div>
@@ -123,10 +123,10 @@ export default async function DashboardPage() {
             </div>
 
             {ideas.length === 0 ? (
-              <div className="text-center py-10 text-sm text-gray-400">
-                No ideas yet.{" "}
-                <Link href="/ideas/new" className="text-brand-500 hover:underline">
-                  Add one →
+              <div className="text-center py-10 px-4 text-sm text-gray-500">
+                No reels yet.{" "}
+                <Link href="/ideas/new" className="text-brand-600 font-medium hover:underline">
+                  Add the first one
                 </Link>
               </div>
             ) : (
@@ -174,7 +174,7 @@ export default async function DashboardPage() {
               <ModelCard profile={profile} />
             ) : (
               <div className="card p-4 text-sm text-gray-500 text-center">
-                No model profile found. Run the SQL schema migration.
+                The face profile has not loaded. Refresh once the database is awake.
               </div>
             )}
 
@@ -188,7 +188,7 @@ export default async function DashboardPage() {
                   className="flex items-center gap-2 w-full text-sm text-gray-600 hover:text-brand-600 hover:bg-brand-50 px-3 py-2 rounded-lg transition-colors"
                 >
                   <Plus className="w-4 h-4" />
-                  Add New Idea
+                  Add a reel
                 </Link>
                 <RunPipelineButton variant="list-item" />
               </div>

@@ -46,14 +46,14 @@ export default function IdeasPage() {
     <Layout>
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Video Ideas</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Reels</h1>
             <p className="text-sm text-gray-500 mt-0.5">
-              {ideas.length} idea{ideas.length !== 1 ? "s" : ""} total
+              {ideas.length} saved
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <button
               onClick={fetchIdeas}
               disabled={loading}
@@ -64,7 +64,7 @@ export default function IdeasPage() {
             </button>
             <Link href="/ideas/new" className="btn-primary">
               <Plus className="w-4 h-4" />
-              New Idea
+              New reel
             </Link>
           </div>
         </div>

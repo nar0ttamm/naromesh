@@ -3,6 +3,7 @@
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Film, Lock, AlertCircle } from "lucide-react";
+import { APP_NAME, APP_TAGLINE } from "@/lib/brand";
 
 export default function LoginPage() {
   const [password, setPassword] = useState("");
@@ -46,14 +47,14 @@ export default function LoginPage() {
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-brand-500 mb-4">
             <Film className="w-7 h-7 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">InstagramMoney</h1>
-          <p className="mt-1 text-sm text-gray-500">AI Reel Automation Dashboard</p>
+          <h1 className="text-2xl font-bold text-gray-900">{APP_NAME}</h1>
+          <p className="mt-1 text-sm text-gray-500">{APP_TAGLINE}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="card p-6 space-y-4">
           <div>
             <label htmlFor="password" className="label">
-              Admin Password
+              Password
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
@@ -63,7 +64,6 @@ export default function LoginPage() {
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
                 className="input pl-9"
                 required
                 autoFocus
@@ -87,9 +87,6 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <p className="text-center text-xs text-gray-400 mt-4">
-          Internal tool — access restricted
-        </p>
       </div>
     </div>
   );

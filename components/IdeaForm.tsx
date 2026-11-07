@@ -121,7 +121,6 @@ export default function IdeaForm({ initialData }: Props) {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="e.g. Morning Routine for Productivity"
             className="input"
             required
           />
@@ -132,7 +131,6 @@ export default function IdeaForm({ initialData }: Props) {
           <textarea
             value={fullScript}
             onChange={(e) => setFullScript(e.target.value)}
-            placeholder="Write the full narration / script for this reel…"
             rows={5}
             className="input resize-y"
             required
@@ -202,7 +200,6 @@ export default function IdeaForm({ initialData }: Props) {
                   onChange={(e) =>
                     updateScene(index, "visual_prompt", e.target.value)
                   }
-                  placeholder="Describe the visuals for this scene…"
                   rows={2}
                   className="input text-xs resize-none"
                   required
@@ -217,7 +214,6 @@ export default function IdeaForm({ initialData }: Props) {
                   onChange={(e) =>
                     updateScene(index, "motion_prompt", e.target.value)
                   }
-                  placeholder="e.g. subtle camera push-in, natural expression"
                   className="input text-xs"
                   required
                 />
@@ -251,7 +247,7 @@ export default function IdeaForm({ initialData }: Props) {
       )}
 
       {/* Submit */}
-      <div className="flex gap-3">
+      <div className="flex flex-col-reverse sm:flex-row gap-3">
         <button type="submit" disabled={loading} className="btn-primary">
           {loading
             ? isEditing
@@ -259,7 +255,7 @@ export default function IdeaForm({ initialData }: Props) {
               : "Creating…"
             : isEditing
             ? "Save Changes"
-            : "Create Idea"}
+            : "Save reel"}
         </button>
         <button
           type="button"

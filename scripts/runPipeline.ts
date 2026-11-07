@@ -37,7 +37,7 @@ export interface PipelineResult {
 }
 
 export async function runPipeline(): Promise<PipelineResult> {
-  console.log("=== InstagramMoney Pipeline START ===");
+  console.log("=== Naromesh pipeline start ===");
 
   if (isMockMode()) {
     console.log("[pipeline] MOCK_MODE is enabled — no real API calls will be made.");

@@ -137,14 +137,12 @@ export default function ModelCard({ profile: initialProfile }: Props) {
             value={form.negative_prompt ?? ""}
             onChange={(v) => handleChange("negative_prompt", v || null)}
             multiline
-            placeholder="Optional"
           />
           <Field
             label="Style Notes"
             value={form.style_notes ?? ""}
             onChange={(v) => handleChange("style_notes", v || null)}
             multiline
-            placeholder="Optional"
           />
           <Field
             label="Reference Image URL"
@@ -152,7 +150,6 @@ export default function ModelCard({ profile: initialProfile }: Props) {
             onChange={(v) =>
               handleChange("reference_image_url", v || null)
             }
-            placeholder="https://… (optional)"
           />
           {error && (
             <p className="text-xs text-red-600">{error}</p>

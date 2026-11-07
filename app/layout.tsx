@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "InstagramMoney — AI Reel Automation",
-  description: "Internal dashboard for AI reel automation pipeline"
+  title: "Naromesh🥵",
+  description: "Naromesh reel studio"
 };
 
 export default function RootLayout({

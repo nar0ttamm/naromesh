@@ -44,12 +44,12 @@ export default async function IdeaDetailPage({ params }: Props) {
             className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Ideas
+            Back to reels
           </Link>
 
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900 leading-tight">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div className="min-w-0">
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 leading-tight break-words">
                 {typedIdea.title}
               </h1>
               <div className="flex items-center gap-3 mt-2">

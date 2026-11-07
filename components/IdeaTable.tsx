@@ -15,9 +15,9 @@ export default function IdeaTable({ ideas, onDelete }: Props) {
   if (ideas.length === 0) {
     return (
       <div className="text-center py-12 text-sm text-gray-400">
-        No video ideas yet.{" "}
-        <Link href="/ideas/new" className="text-brand-500 hover:underline">
-          Add your first idea →
+        No reels yet.{" "}
+        <Link href="/ideas/new" className="text-brand-600 font-medium hover:underline">
+          Add the first one
         </Link>
       </div>
     );
@@ -75,7 +75,7 @@ export default function IdeaTable({ ideas, onDelete }: Props) {
                 )}
               </td>
               <td className="py-3 px-4">
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity justify-end">
+                <div className="flex items-center gap-1 justify-end md:opacity-0 md:group-hover:opacity-100">
                   <Link
                     href={`/ideas/${idea.id}`}
                     className="p-1.5 text-gray-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors"
